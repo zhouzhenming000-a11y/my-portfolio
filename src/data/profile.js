@@ -54,10 +54,18 @@ export const profile = {
   ],
 
   skills: {
-    Languages: ["JavaScript", "HTML/CSS", "Python"],
-    Frameworks: ["React", "Vite", "Node.js"],
-    Tools: ["Git", "VS Code", "Figma"],
-    Design: ["UI 设计", "响应式布局", "Framer Motion"],
+    Languages: [
+      "JavaScript",
+      "HTML/CSS",
+      { name: "Python", url: "https://www.python.org" },
+    ],
+    Frameworks: [
+      { name: "React", url: "https://react.dev" },
+      { name: "Vite", url: "https://vitejs.dev" },
+      { name: "Node.js", url: "https://nodejs.org" },
+    ],
+    Tools: ["Git", "VS Code", { name: "Figma", url: "https://www.figma.com" }],
+    Design: ["UI 设计", "响应式布局", { name: "Framer Motion", url: "https://www.framer.com/motion/" }],
   },
 
   contact: {

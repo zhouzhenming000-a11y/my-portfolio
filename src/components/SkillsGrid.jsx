@@ -65,30 +65,52 @@ export default function SkillsGrid() {
                 {category}
               </h3>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-                {items.map((skill) => (
-                  <span
-                    key={skill}
-                    style={{
-                      padding: "6px 14px",
-                      borderRadius: "999px",
-                      border: "1px solid var(--border-subtle)",
-                      color: "var(--text-primary)",
-                      fontSize: "0.85rem",
-                      transition: "all 0.2s ease",
-                      cursor: "default",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = "var(--accent-gold)";
-                      e.currentTarget.style.color = "var(--accent-gold)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = "var(--border-subtle)";
-                      e.currentTarget.style.color = "var(--text-primary)";
-                    }}
-                  >
-                    {skill}
-                  </span>
-                ))}
+                {items.map((skill) => {
+                  const name = typeof skill === "string" ? skill : skill.name;
+                  const url = typeof skill === "string" ? null : skill.url;
+                  const baseStyle = {
+                    padding: "6px 14px",
+                    borderRadius: "999px",
+                    border: "1px solid var(--border-subtle)",
+                    color: "var(--text-primary)",
+                    fontSize: "0.85rem",
+                    transition: "all 0.2s ease",
+                    textDecoration: "none",
+                    display: "inline-block",
+                    cursor: url ? "pointer" : "default",
+                  };
+                  const hoverIn = (e) => {
+                    e.currentTarget.style.borderColor = "var(--accent-gold)";
+                    e.currentTarget.style.color = "var(--accent-gold)";
+                  };
+                  const hoverOut = (e) => {
+                    e.currentTarget.style.borderColor = "var(--border-subtle)";
+                    e.currentTarget.style.color = "var(--text-primary)";
+                  };
+
+                  return url ? (
+                    <a
+                      key={name}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={baseStyle}
+                      onMouseEnter={hoverIn}
+                      onMouseLeave={hoverOut}
+                    >
+                      {name}
+                    </a>
+                  ) : (
+                    <span
+                      key={name}
+                      style={baseStyle}
+                      onMouseEnter={hoverIn}
+                      onMouseLeave={hoverOut}
+                    >
+                      {name}
+                    </span>
+                  );
+                })}
               </div>
             </motion.div>
           ))}
